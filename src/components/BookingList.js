@@ -15,7 +15,6 @@ function BookingList({ onSelectBooking }) {
   // Fetch bookings
   useEffect(() => {
     const fetchBookings = async () => {
-      console.log("Sending token in header:", authToken);
       try {
         const response = await axios.get("http://localhost:5000/api/bookings/", {
           headers: { 
@@ -38,6 +37,7 @@ function BookingList({ onSelectBooking }) {
         setRooms(response.data);
       } catch (err) {
         console.error("Failed to fetch rooms:", err);
+        setError("Failed to fetch rooms. Please try again later.");
       }
     };
 
@@ -55,7 +55,7 @@ function BookingList({ onSelectBooking }) {
 
   // Format the events for the calendar
   const events = bookings.map((booking) => ({
-    date: new Date(booking.check_in_date).toLocaleDateString(), // Format to match the calendar
+    date: new Date(booking.check_in_date).toLocaleDateString(),
     title: `Room ${booking.room_id} - User ${booking.user_id} (Booked)`,
     status: "Booked",
     booking, // Attach the full booking object
@@ -113,13 +113,3 @@ function BookingList({ onSelectBooking }) {
 }
 
 export default BookingList;
-
-
-
-
-
-
-
-
-
-

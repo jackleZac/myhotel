@@ -29,6 +29,9 @@ function ViewReports({ authToken }) {
 
         setRooms(roomResponse.data);
         setBookings(bookingResponse.data);
+
+        console.log("Rooms List Monthly Report: ", roomResponse.data);
+        console.log("Bookings List Monthly Report: ", bookingResponse.data);
       } catch (err) {
         setError("Failed to load reports.");
         console.error(err);
@@ -64,14 +67,15 @@ function ViewReports({ authToken }) {
             <th>Type</th>
             <th>Price</th>
             <th>Occupied</th>
-            <th>Customer Name</th>
-            <th>Reservation Date</th>
+            <th>Customer Id</th>
+            <th>Check-in Date</th>
+            <th>Check-out Date</th>
           </tr>
         </thead>
         <tbody>
           {rooms.map((room) => {
             const roomBookings = bookings.filter(
-              (booking) => booking.roomNumber === room.number
+              (booking) => booking.room_id === room.room_id
             );
             return roomBookings.length > 0 ? (
               roomBookings.map((booking) => (
@@ -80,8 +84,9 @@ function ViewReports({ authToken }) {
                   <td>{room.type}</td>
                   <td>{room.price}</td>
                   <td>Yes</td>
-                  <td>{booking.customerName}</td>
-                  <td>{new Date(booking.reservationDate).toLocaleDateString()}</td>
+                  <td>{booking.user_id}</td>
+                  <td>{new Date(booking.check_in_date).toLocaleDateString()}</td>
+                  <td>{new Date(booking.check_out_date).toLocaleDateString()}</td>
                 </tr>
               ))
             ) : (
@@ -90,6 +95,7 @@ function ViewReports({ authToken }) {
                 <td>{room.type}</td>
                 <td>{room.price}</td>
                 <td>No</td>
+                <td>N/A</td>
                 <td>N/A</td>
                 <td>N/A</td>
               </tr>

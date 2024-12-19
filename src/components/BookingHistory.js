@@ -39,7 +39,7 @@ function BookingHistory({ authToken, userId }) {
         <ul>
           {userBookings.map((booking, index) => (
             <li key={index}>
-              Room Type: {booking.type} | Check-In: {booking.check_in_date} |
+              Room Id: {booking.room_id} | Check-In: {booking.check_in_date} |
               Check-Out: {booking.check_out_date}
             </li>
           ))}
