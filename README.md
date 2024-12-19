@@ -24,13 +24,17 @@ Follow these steps to set up the project locally:
 
    Using HTTPS:
    ```bash
-   git clone https://github.com/jackleZac/myhotel.git
+   git clone git@github.com:jackleZac/myhotel.git
+
 
 2. **Navigate to the Project Directory**
+
    cd myhotel
 
-3. **Install Dependencies**
+4. **Install Dependencies**
+
    npm install
    
-5. **Run Development Server**
+6. **Run Development Server**
+
    npm start
